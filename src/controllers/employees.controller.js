@@ -2,6 +2,14 @@ import { pool as sql } from '../db/db.js'
 
 const errorMessage = (res) => res.status(500).json({ code: 500, message: "Error interno del servidor" })
 
+export const dashboard = async (req, res) => {
+    res.json({
+        message: "Bienvenido a la API de empleados",
+        routes: ["/employees", "/employees/:id"],
+        example: "/employees/1"
+    })
+}
+
 export const getEmployees = async (req, res) => {
     try {
         const [rows] = await sql.query('SELECT * FROM companydb')
